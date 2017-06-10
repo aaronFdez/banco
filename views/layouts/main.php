@@ -64,9 +64,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Manolito <?= date('d M Y') ?></p>
+        <p class="center-block"><b>&copy; Música Sí    &nbsp; &nbsp; &nbsp; &nbsp;</b><?= date('(d M Y)') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
     </div>
 </footer>
 
