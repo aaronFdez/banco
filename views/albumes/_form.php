@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'artista_id')->textInput() ?>
 
     <div class="form-group">

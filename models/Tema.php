@@ -39,6 +39,7 @@ class Tema extends \yii\db\ActiveRecord
             [['titulo'], 'unique'],
             [['album_id'], 'exist', 'skipOnError' => true, 'targetClass' => Album::className(), 'targetAttribute' => ['album_id' => 'id']],
             [['artista_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artista::className(), 'targetAttribute' => ['artista_id' => 'id']],
+            [['foto'], 'safe'],
         ];
     }
 

@@ -32,6 +32,8 @@ class Artista extends \yii\db\ActiveRecord
             [['nombre'], 'required'],
             [['nombre'], 'string', 'max' => 255],
             [['nombre'], 'unique'],
+            [['foto'], 'safe'],
+            
         ];
     }
 
@@ -43,8 +45,11 @@ class Artista extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
+            'foto' => 'Url de la foto',
         ];
     }
+
+
 
     /**
      * @return \yii\db\ActiveQuery

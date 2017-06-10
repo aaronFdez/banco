@@ -21,10 +21,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body >
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap fondo">
     <?php
     NavBar::begin([
         'brandLabel' => 'Música Sí',
@@ -36,7 +36,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Cuentas', 'url' => ['/cuentas/index']],
+            ['label' => 'Artistas', 'url' => ['/artistas/index']],
+            ['label' => 'Albumes', 'url' => ['/albumes/index']],
+            ['label' => 'Temas', 'url' => ['/temas/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Registrarse', 'url' => ['/site/login']]
             ) : (

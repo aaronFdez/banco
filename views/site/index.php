@@ -1,6 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
+use app\models\Album;
+use app\models\Artista;
 use yii\helpers\Html;
 
 $this->title = 'Banco Manolito';
@@ -15,16 +17,16 @@ $this->title = 'Banco Manolito';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Empleados</h2>
+                <h2>Artistas</h2>
+                <?= Html::img(Artista ::findOne(1)->foto, [ 'width' => '300px', 'height'=>'300px']); ?>
             </div>
             <div class="col-lg-4">
-                <h2>Director</h2>
-
+                <h2>Albumes</h2>
+                    <?= Html::img(Album::findOne(1)->foto, [ 'width' => '300px', 'height'=>'300px']); ?>
             </div>
             <div class="col-lg-4">
-                <h2>Clientes</h2>
-                <!-- <?= Html::img("http://destinonegocio.com/wp-content/uploads/2016/09/atencion-cliente.jpg", ['width' => '300px', 'height'=>'250px']); ?> -->
-
+                <h2>Temas</h2>
+                <?= Html::img("https://lh6.googleusercontent.com/-3W3oL4lzCvs/T7qnN39ogJI/AAAAAAAAGSk/FEWJ8v40K-I/s800/homero-tema-musical-series.jpg", [ 'width' => '300px', 'height'=>'300px']); ?>
             </div>
         </div>
 

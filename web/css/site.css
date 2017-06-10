@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.fondo {
+    background-image: url("https://i.ytimg.com/vi/UPSrQkAvyBQ/maxresdefault.jpg");
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

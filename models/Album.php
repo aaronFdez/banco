@@ -35,6 +35,7 @@ class Album extends \yii\db\ActiveRecord
             [['titulo'], 'string', 'max' => 255],
             [['titulo'], 'unique'],
             [['artista_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artista::className(), 'targetAttribute' => ['artista_id' => 'id']],
+            [['foto'], 'safe'],
         ];
     }
 
