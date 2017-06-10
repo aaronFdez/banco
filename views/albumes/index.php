@@ -16,15 +16,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Agregar album', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Agregar álbum', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'titulo',
+            [
+            'attribute' => 'titulo',
+            'value' => function ($model, $key, $index, $column) {
+                return Html::a(
+                    $model->titulo,
+                    ['albumes/view', 'id' => $model->id]
+                );
+            },
+            'format' => 'html',
+        ],
             [
             'label' => 'Artista',
+            'attribute'=>'artista_id',
             'value' => function ($model, $key, $index, $column) {
                 return Html::a(
                     $model->artista->nombre,

@@ -59,11 +59,11 @@ class AlbumSearch extends Album
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'artista_id' => $this->artista_id,
+            'Título' => $this->titulo,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
+        $query->andFilterWhere(['ilike', 'titulo', $this->titulo]);
+
 
         return $dataProvider;
     }
