@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\data\Sort;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "albumes".
@@ -48,6 +50,7 @@ class Album extends \yii\db\ActiveRecord
             'id' => 'ID',
             'titulo' => 'Título',
             'artista_id' => 'Artista',
+            'nombreArtista' => 'Nombre del artista',
         ];
     }
 
@@ -57,6 +60,31 @@ class Album extends \yii\db\ActiveRecord
     public function getArtista()
     {
         return $this->hasOne(Artista::className(), ['id' => 'artista_id'])->inverseOf('albumes');
+    }
+
+    public function getNombreArtista()
+    {
+        return $this->artista->nombre;
+    }
+
+    public function verTemas()
+    {
+        return new ActiveDataProvider([
+            'query' => $this->getTemas(),
+            'sort' => new Sort([
+                'sortParam' => 'sortDisp',
+                'attributes' => [
+                    'nombre' => [
+                        'asc' => [
+                            'titulo' => SORT_ASC,
+                        ],
+                        'desc' => [
+                            'titulo' => SORT_DESC,
+                        ],
+                    ],
+                ],
+            ])
+        ]);
     }
 
     /**

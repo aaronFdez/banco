@@ -51,8 +51,11 @@ class AlbumesController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $dataProviderTemas = $model->verTemas();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'dataProviderTemas' => $dataProviderTemas,
         ]);
     }
 

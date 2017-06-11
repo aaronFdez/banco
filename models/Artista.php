@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\data\Sort;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "artistas".
@@ -33,7 +35,7 @@ class Artista extends \yii\db\ActiveRecord
             [['nombre'], 'string', 'max' => 255],
             [['nombre'], 'unique'],
             [['foto'], 'safe'],
-            
+
         ];
     }
 
@@ -66,4 +68,25 @@ class Artista extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tema::className(), ['artista_id' => 'id'])->inverseOf('artista');
     }
+
+    public function verAlbumes()
+    {
+        return new ActiveDataProvider([
+            'query' => $this->getAlbumes(),
+            'sort' => new Sort([
+                'sortParam' => 'sortDisp',
+                'attributes' => [
+                    'nombre' => [
+                        'asc' => [
+                            'titulo' => SORT_ASC,
+                        ],
+                        'desc' => [
+                            'titulo' => SORT_DESC,
+                        ],
+                    ],
+                ],
+            ])
+        ]);
+    }
+
 }

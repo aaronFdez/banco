@@ -22,7 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'nombre',
+            [
+            'label' => 'Nombre',
+            'attribute'=>'nombre',
+            'value' => function ($model, $key, $index, $column) {
+                return Html::a(
+                    $model->nombre,
+                    ['artistas/view', 'id' => $model->id]
+                );
+            },
+            'format' => 'html',
+        ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

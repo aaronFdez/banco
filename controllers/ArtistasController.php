@@ -51,8 +51,11 @@ class ArtistasController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $dataProviderAlbum = $model->verAlbumes();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'dataProviderAlbum' => $dataProviderAlbum,
         ]);
     }
 

@@ -51,9 +51,10 @@ class Tema extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'titulo' => 'Título',
-            'artista_id' => 'Artista',
-            'album_id' => 'Album',
+            'nombreArtista' => 'Nombre del artista',
+            'tituloAlbum' => 'Título del álbum',
             'duracion' => 'Duración',
+
         ];
     }
 
@@ -71,6 +72,16 @@ class Tema extends \yii\db\ActiveRecord
     public function getArtista()
     {
         return $this->hasOne(Artista::className(), ['id' => 'artista_id'])->inverseOf('temas');
+    }
+
+    public function getNombreArtista()
+    {
+        return $this->artista->nombre;
+    }
+
+    public function getTituloAlbum()
+    {
+        return $this->album->titulo;
     }
 
     public function getTiempo()

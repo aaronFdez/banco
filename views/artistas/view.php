@@ -1,5 +1,7 @@
 <?php
 
+use yii\bootstrap\ActiveForm;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -20,7 +22,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'nombre',
                     ],
                 ]) ?>
-
+                <h3>Albumes de <?= $model->nombre ?></h3>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProviderAlbum,
+                    'columns' => [
+                        [
+                            'label'=>'Título del álbum',
+                            'attribute' => 'titulo',
+                            'value' => function ($model, $widget) {
+                                return Html::a(Html::encode($model->titulo),
+                                    ['albumes/view', 'id' => $model->id]);
+                            },
+                            'format' => 'html',
+                        ],
+                    ],
+                ]) ?>
         <?= Html::img($model->foto, ['title' => $model->nombre , 'width' => '500px', 'height'=>'auto']); ?>
         <br  /><br  />
 

@@ -18,9 +18,31 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'titulo',
-            'artista.nombre',
-            'album.titulo:text:Album',
+            [
+                'label'=>'Título del tema',
+                'attribute' => 'titulo',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->titulo),
+                        ['temas/view', 'id' => $model->id]);
+                },
+                'format' => 'html',
+            ],
+            [
+                'attribute' => 'nombreArtista',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->nombreArtista),
+                        ['artistas/view', 'id' => $model->artista_id]);
+                },
+                'format' => 'html',
+            ],
+            [
+                'attribute' =>'tituloAlbum',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->tituloAlbum),
+                        ['albumes/view', 'id' => $model->album_id]);
+                },
+                'format' => 'html',
+            ],
             'tiempo:text:Duración',
 
         ],

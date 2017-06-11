@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -18,8 +19,38 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'titulo',
-            'artista.nombre'
+            [
+                'label'=>'Título del álbum',
+                'attribute' => 'titulo',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->titulo),
+                        ['albumes/view', 'id' => $model->id]);
+                },
+                'format' => 'html',
+            ],
+            [
+                'attribute' => 'nombreArtista',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->nombreArtista),
+                        ['artistas/view', 'id' => $model->id]);
+                },
+                'format' => 'html',
+            ],
+        ],
+    ]) ?>
+    <h3>Temas en el álbum <?= $model->titulo ?> de <?= $model->nombreArtista ?></h3>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderTemas,
+        'columns' => [
+            [
+                'label'=>'Título del álbum',
+                'attribute' => 'titulo',
+                'value' => function ($model, $widget) {
+                    return Html::a(Html::encode($model->titulo),
+                        ['temas/view', 'id' => $model->id]);
+                },
+                'format' => 'html',
+            ],
         ],
     ]) ?>
     <div class="row">
