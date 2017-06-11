@@ -72,4 +72,15 @@ class Tema extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Artista::className(), ['id' => 'artista_id'])->inverseOf('temas');
     }
+
+    public function getTiempo()
+    {
+        $segundos=$this->duracion % 60;
+        $minutos = $this->duracion /60;
+        if ($segundos < 10) {
+            $segundos = "0" . $segundos;
+        }
+        $tiempo = intval($minutos) . ":" . $segundos;
+        return $tiempo;
+    }
 }

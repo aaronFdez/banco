@@ -16,19 +16,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tema', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Añadir tema', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            'artista.nombre:text:Artista',
             'titulo',
-            'artista_id',
-            'album_id',
-            'duracion',
+            'album.titulo:text:Album',
+            'tiempo:text:Duración',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

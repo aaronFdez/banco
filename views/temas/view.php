@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tema */
 
-$this->title = $model->id;
+$this->title = $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Temas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,26 +14,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'titulo',
-            'artista_id',
-            'album_id',
-            'duracion',
+            'artista.nombre',
+            'album.titulo:text:Album',
+            'tiempo:text:Duración',
+
         ],
     ]) ?>
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Portada</h2>
+            <?= Html::img($model->album->foto, [ 'width' => '300px', 'height'=>'300px']); ?>
+        </div>
+        <div class="col-lg-5">
+            <h2><?= "Artista:" . $model->artista->nombre ?></h2>
+            <?= Html::img($model->artista->foto, [ 'width' => '300px', 'height'=>'300px']); ?>
+        </div>
+    </div>
+    <br/>
+
+</br/>
+    <p>
+        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => '¿Seguro que desea borrar el tema ' . $model->titulo . '?',
+                'method' => 'post',
+            ],
+            ]) ?>
+        </p>
 
 </div>

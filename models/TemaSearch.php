@@ -66,6 +66,7 @@ class TemaSearch extends Tema
             'duracion' => $this->duracion,
         ]);
 
+        
         $query->andFilterWhere(['like', 'titulo', $this->titulo]);
 
         return $dataProvider;
