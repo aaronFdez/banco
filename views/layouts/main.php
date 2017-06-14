@@ -39,18 +39,18 @@ AppAsset::register($this);
             ['label' => 'Artistas', 'url' => ['/artistas/index']],
             ['label' => 'Albumes', 'url' => ['/albumes/index']],
             ['label' => 'Temas', 'url' => ['/temas/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Registrarse', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Salir (' . Yii::$app->user->identity->nombre . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+        //     Yii::$app->user->isGuest ? (
+        //         ['label' => 'Registrarse', 'url' => ['/site/login']]
+        //     ) : (
+        //         '<li>'
+        //         . Html::beginForm(['/site/logout'], 'post')
+        //         . Html::submitButton(
+        //             'Salir (' . Yii::$app->user->identity->nombre . ')',
+        //             ['class' => 'btn btn-link logout']
+        //         )
+        //         . Html::endForm()
+        //         . '</li>'
+        //     )
         ],
     ]);
     NavBar::end();
@@ -66,7 +66,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="center-block"><b>&copy; Música Sí    &nbsp; &nbsp; &nbsp; &nbsp;</b><?= date('(d M Y)') ?></p>
+        <p class="center-block"><b>&copy; Música Sí    &nbsp; &nbsp; &nbsp; &nbsp;</b><?= date('( d M Y )') ?></p>
 
         <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
     </div>
