@@ -18,8 +18,8 @@ if ($url !== false) {
 }
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=localhost;dbname=musica',
-    'username' => 'musica',
-    'password' => 'musica',
+    'dsn' => 'pgsql:host=localhost;dbname=teayudo',
+    'username' => 'teayudo',
+    'password' => 'teayudo',
     'charset' => 'utf8',
 ];

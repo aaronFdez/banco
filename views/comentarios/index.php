@@ -1,32 +1,30 @@
 <?php
-use app\components\UsuariosHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UsuarioSearch */
+/* @var $searchModel app\models\ComentarioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Usuarios';
+$this->title = 'Comentarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-index">
+<div class="comentario-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Crear usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Comentario', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'nombre',
-            'password',
-            [
-                'attribute' => 'tipo',
-                'value' => 'tipoUsuario',
-                'filter' => UsuariosHelper::listaTipos(),
-            ],
+            ['class' => 'yii\grid\SerialColumn'],
+            'id',
+            'comentario:ntext',
+            'fecha',
+            'id_usuario',
+            'id_consulta',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

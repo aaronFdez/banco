@@ -1,13 +1,12 @@
 <?php
 namespace app\models;
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Usuario;
+use app\models\TipoConsulta;
 /**
- * UsuarioSearch represents the model behind the search form about `app\models\Usuario`.
+ * TipoConsultaSearch represents the model behind the search form about `app\models\TipoConsulta`.
  */
-class UsuarioSearch extends Usuario
+class TipoConsultaSearch extends TipoConsulta
 {
     /**
      * @inheritdoc
@@ -16,7 +15,7 @@ class UsuarioSearch extends Usuario
     {
         return [
             [['id'], 'integer'],
-            [['nombre', 'password', 'tipo'], 'safe'],
+            [['tipo'], 'safe'],
         ];
     }
     /**
@@ -36,7 +35,7 @@ class UsuarioSearch extends Usuario
      */
     public function search($params)
     {
-        $query = Usuario::find();
+        $query = TipoConsulta::find();
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,9 +50,7 @@ class UsuarioSearch extends Usuario
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'tipo', $this->tipo]);
+        $query->andFilterWhere(['like', 'tipo', $this->tipo]);
         return $dataProvider;
     }
 }

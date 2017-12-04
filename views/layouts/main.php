@@ -2,12 +2,17 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+use yii\helpers\Url;
+use app\components\UsuariosHelper;
+use app\widgets\Notificacion;
 use yii\helpers\Html;
+use app\helpers\Mensaje;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+
+$url= "images/logo.png";
 
 AppAsset::register($this);
 ?>
@@ -17,17 +22,31 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+        .my-navbar {
+            background-color: #fc6000;
+            color: white;
+        }
+        .navbar-text {
+            background-color: blue; //lightgrey
+        }
+        p.navbar-text a {
+            color: #fc6000;
+            background-color: lightgrey;
+        }
+    </style>
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <?= Html::img('images/logo.png');?>
+    <title>Te Ayudo</title>
     <?php $this->head() ?>
 </head>
-<body >
+<body>
 <?php $this->beginBody() ?>
 
-<div class="wrap fondo">
+<div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Música Sí',
+        'brandLabel' => 'Inicio',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,21 +55,17 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Artistas', 'url' => ['/artistas/index']],
-            ['label' => 'Albumes', 'url' => ['/albumes/index']],
-            ['label' => 'Temas', 'url' => ['/temas/index']],
-        //     Yii::$app->user->isGuest ? (
-        //         ['label' => 'Registrarse', 'url' => ['/site/login']]
-        //     ) : (
-        //         '<li>'
-        //         . Html::beginForm(['/site/logout'], 'post')
-        //         . Html::submitButton(
-        //             'Salir (' . Yii::$app->user->identity->nombre . ')',
-        //             ['class' => 'btn btn-link logout']
-        //         )
-        //         . Html::endForm()
-        //         . '</li>'
-        //     )
+            ['label' => 'Consultas', 'url' => ['/consultas/index']],
+            ['label' => 'Conócenos', 'url' => ['/site/about']],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Mi perfil', 'url' => ['/site/login']]
+                ) : (
+                    ['label' => 'Mi perfil', 'url' => ['/usuarios/view', 'id' => Yii::$app->user->identity->id],]
+            ),
+            UsuariosHelper::isAdmin() ? (
+                ['label' => 'Usuarios', 'url' => ['usuarios/index']]
+            ) : '',
+            UsuariosHelper::menu(),
         ],
     ]);
     NavBar::end();
@@ -60,15 +75,16 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?= Notificacion::widget() ?>
         <?= $content ?>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="center-block"><b>&copy; Música Sí    &nbsp; &nbsp; &nbsp; &nbsp;</b><?= date('( d M Y )') ?></p>
+        <p class="pull-left">Te Ayudo &copy;  ( <?= date('d M Y') ?> ) </p>
 
-        <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
+        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

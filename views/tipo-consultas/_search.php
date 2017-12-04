@@ -2,11 +2,11 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
-/* @var $model app\models\UsuarioSearch */
+/* @var $model app\models\TipoConsultaSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="usuario-search">
+<div class="tipo-consulta-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -14,10 +14,6 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'nombre') ?>
-
-    <?= $form->field($model, 'password') ?>
 
     <?= $form->field($model, 'tipo') ?>
 

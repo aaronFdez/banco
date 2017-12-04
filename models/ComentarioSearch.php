@@ -1,13 +1,12 @@
 <?php
 namespace app\models;
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Usuario;
+use app\models\Comentario;
 /**
- * UsuarioSearch represents the model behind the search form about `app\models\Usuario`.
+ * ComentarioSearch represents the model behind the search form about `app\models\Comentario`.
  */
-class UsuarioSearch extends Usuario
+class ComentarioSearch extends Comentario
 {
     /**
      * @inheritdoc
@@ -15,8 +14,8 @@ class UsuarioSearch extends Usuario
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['nombre', 'password', 'tipo'], 'safe'],
+            [['id', 'id_usuario', 'id_consulta'], 'integer'],
+            [['comentario', 'fecha'], 'safe'],
         ];
     }
     /**
@@ -36,7 +35,7 @@ class UsuarioSearch extends Usuario
      */
     public function search($params)
     {
-        $query = Usuario::find();
+        $query = Comentario::find();
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -50,10 +49,11 @@ class UsuarioSearch extends Usuario
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'fecha' => $this->fecha,
+            'id_usuario' => $this->id_usuario,
+            'id_consulta' => $this->id_consulta,
         ]);
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'tipo', $this->tipo]);
+        $query->andFilterWhere(['like', 'comentario', $this->comentario]);
         return $dataProvider;
     }
 }

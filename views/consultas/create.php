@@ -1,17 +1,18 @@
 <?php
 use yii\helpers\Html;
 /* @var $this yii\web\View */
-/* @var $model app\models\Usuario */
-$this->title = 'Create Usuario';
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+/* @var $model app\models\Consulta */
+$this->title = 'Create Consulta';
+$this->params['breadcrumbs'][] = ['label' => 'Consultas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-create">
+<div class="consulta-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
+         'tipos' => $tipos,
     ]) ?>
 
 </div>

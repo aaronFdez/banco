@@ -1,13 +1,12 @@
 <?php
 namespace app\models;
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Usuario;
+use app\models\Consulta;
 /**
- * UsuarioSearch represents the model behind the search form about `app\models\Usuario`.
+ * ConsultaSearch represents the model behind the search form about `app\models\Consulta`.
  */
-class UsuarioSearch extends Usuario
+class ConsultaSearch extends Consulta
 {
     /**
      * @inheritdoc
@@ -15,8 +14,8 @@ class UsuarioSearch extends Usuario
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['nombre', 'password', 'tipo'], 'safe'],
+            [['id','tipo_consulta','id_usuario' ], 'integer'],
+            [['titulo', 'cuerpo', 'enlace', 'publicado'], 'safe'],
         ];
     }
     /**
@@ -36,7 +35,7 @@ class UsuarioSearch extends Usuario
      */
     public function search($params)
     {
-        $query = Usuario::find();
+        $query = Consulta::find();
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -50,10 +49,13 @@ class UsuarioSearch extends Usuario
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'publicado' => $this->publicado,
+            'tipo_consulta' => $this->tipo_consulta,
+            'id_usuario' => $this->id_usuario,
         ]);
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'tipo', $this->tipo]);
+        $query->andFilterWhere(['ilike', 'titulo', $this->titulo])
+            ->andFilterWhere(['like', 'cuerpo', $this->cuerpo])
+            ->andFilterWhere(['like', 'enlace', $this->enlace]);
         return $dataProvider;
     }
 }
