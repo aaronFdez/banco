@@ -3,10 +3,6 @@ body {
     height: 100%;
 }
 
-.fondo {
-    background-image: url("https://i.ytimg.com/vi/UPSrQkAvyBQ/maxresdefault.jpg");
-}
-
 .wrap {
     min-height: 100%;
     height: auto;
@@ -38,6 +34,45 @@ body {
 .not-set {
     color: #c55;
     font-style: italic;
+}
+
+/* estilos */
+
+.noticia-view {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.noticia-view h2 {
+    text-transform: capitalize;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+#cuerpo {
+    width: 70%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.3em;
+    background-color: white;
+}
+
+.notPub {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-size: 1.3em;
+}
+
+.botonComentar {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.botonComentar p a {
+    width: 15%;
+    font-size: 1.3em;
 }
 
 /* add sorting icons to gridview sort links */
@@ -116,4 +151,10 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+#w0 > div.form-group.field-comentario-comentario.required textarea {
+    width: 50% !important;
+    margin-left: auto;
+    margin-right: auto;
 }
