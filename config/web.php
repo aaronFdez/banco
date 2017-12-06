@@ -9,7 +9,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'SnMTM02EGJC9rbtp0vjdTkIAQF1pCelp',
+            'cookieValidationKey' => 'B7Ar0-CJUjiA_zL_9JazZQKDzHy0EDDU',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -46,14 +46,17 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/<id:\d+>' => 'usuarios/view',
+                'usuarios/update/<id:\d+>' => 'usuarios/update',
+                'usuarios/delete/<id:\d+>' => 'usuarios/delete',
+                'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
-        */
     ],
     'params' => $params,
     'language' => 'es-ES'
