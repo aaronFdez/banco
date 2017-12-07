@@ -50,10 +50,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/view/<id:\d+>' => 'usuarios/perfil',
                 'usuarios/<id:\d+>' => 'usuarios/view',
-                'usuarios/update/<id:\d+>' => 'usuarios/update',
-                'usuarios/delete/<id:\d+>' => 'usuarios/delete',
+                'usuarios/update/<id:\d+>' => 'usuarios/modificar',
+                'usuarios/delete/<id:\d+>' => 'usuarios/borrar',
                 'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
