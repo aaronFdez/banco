@@ -120,6 +120,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return self::findOne(['nombre' => $nombre]);
     }
 
+    public function getComentarios()
+     {
+         return $this->hasMany(Comentario::className(), ['id_usuario' => 'id'])->inverseOf('usuario');
+     }
+
     public function getId()
     {
         return $this->id;

@@ -7,32 +7,20 @@ $this->params['breadcrumbs'][] = ['label' => 'Consultas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $formatter = \Yii::$app->formatter;
-$fecha = $formatter ->asDate( $model->publicado , 'long' );
+$fechaComentario = $formatter ->asDate( $model->publicado , 'long' );
 ?>
-<p class="notPub">
-    Consulta publicada el <?= $fecha ?> por el usuario  "<?= $model->usuario->nombre ?>"
-</p>
-<div class="consulta-view" id="notVi">
+<div class="consulta-view panel panel-info" id="notVi" style="margin:60px 0px !important">
 
 
-    <div class="page-header">
-        <h2><a href="<?=$model->enlace ?>"> <?= $model->titulo ?></a></h2>
+    <div class="page-header" >
+        <h2 class="text-center"><a href="<?=$model->enlace ?>"> <?= $model->titulo ?></a></h2>
       </div>
 
     <p id="cuerpo"><?= $model->cuerpo ?></p>
-    <!-- <h3>Comentarios (?= $numComentarios; ?>)</h3><br><br> -->
-</div>
-<?php foreach ($comentarios as $comentario) {?>
-    <div class="bg-info">
-        <!-- <p>Autor del comentario:= $comentario->usuario->nombre ?></p> -->
-        <p><?= $comentario->comentario ?></p>
-        <!-- <p>Fecha comentario: $comentario->fecha ?></p> -->
-    </div>
-    <?php } ?>
+    <div class="panel-footer">Publicado por "<?= $model->usuario->nombre ?>" el <?= $fechaComentario ?><span style="float:right">Comentarios (<?= $numComentarios; ?>)</span></div>
 </div>
 <div class="botonComentar">
         <p>
-            <!-- Html::a('Profile', ['user/view', 'id' => $id], ['class' => 'profile-link'])  -->
             <?= Html::a(
                 'Comentar',
                 ['../comentarios/create', 'id_consulta' => $model->id],
@@ -40,5 +28,21 @@ $fecha = $formatter ->asDate( $model->publicado , 'long' );
             ); ?>
         </p>
 </div>
-<!-- //$this->render('../comentarios/_form', ['model' => $comentarioNuevo]) -->
-<!-- // Yii::$app->controller->renderPartial('../comentarios/_form', ['model' => $comentarioNuevo]); -->
+<hr />
+<!-- comentarios  -->
+<?php foreach ($comentarios as $comentario) {?>
+    <div class="col-md-offset-1 col-md-7  bg-info arrow_box">
+        <p><?= $comentario->comentario ?></p>
+        <br/>
+    </br/>
+    </div>
+    <div class="col-md-offset-1 col-md-3" >
+        <p class="text-center">
+            Publicado por <?= $comentario->usuario->nombre ?>
+        </br/>
+        <?= Html::img($comentario->usuario->rutaImagen, ['title' => 'Imagen de ' . $comentario->usuario->nombre  ,
+         'width' => '125px', 'height'=>'80px']); ?>
+        </p>
+        <img src="" alt="">
+    </div>
+    <?php } ?>
