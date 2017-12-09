@@ -21,6 +21,7 @@ $fechaComentario = $formatter ->asDate( $model->publicado , 'long' );
 </div>
 <div class="botonComentar">
         <p>
+            <!-- Html::a('Profile', ['user/view', 'id' => $id], ['class' => 'profile-link'])  -->
             <?= Html::a(
                 'Comentar',
                 ['../comentarios/create', 'id_consulta' => $model->id],
@@ -32,16 +33,19 @@ $fechaComentario = $formatter ->asDate( $model->publicado , 'long' );
 <!-- comentarios  -->
 <?php foreach ($comentarios as $comentario) {?>
     <div class="col-md-offset-1 col-md-7  bg-info arrow_box">
+        <!-- <p>Autor del comentario:= $comentario->usuario->nombre ?></p> -->
         <p><?= $comentario->comentario ?></p>
+        <!-- <p>Fecha comentario: $comentario->fecha ?></p> -->
         <br/>
     </br/>
     </div>
-    <div class="col-md-offset-1 col-md-3" >
+    <div class="col-md-3" >
+        <br />
         <p class="text-center">
             Publicado por <?= $comentario->usuario->nombre ?>
         </br/>
         <?= Html::img($comentario->usuario->rutaImagen, ['title' => 'Imagen de ' . $comentario->usuario->nombre  ,
-         'width' => '125px', 'height'=>'80px']); ?>
+         'max-width' => '125px', ]); ?>
         </p>
         <img src="" alt="">
     </div>
